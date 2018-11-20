@@ -6,7 +6,7 @@ def split_by_punct(segment):
     return [s for s in re.split(r'\W+', segment) if s and not s.isspace()]
 
 def read_text(filename):
-    with open(filename) as f:
+    with open(filename, encoding='utf-8') as f:
         sentences = []
         for line in f:
             line = line.strip()
@@ -18,7 +18,7 @@ def read_text(filename):
 def load_file(data_file, split_idx):
     train = []
     dev = []
-    with open(data_file) as f:
+    with open(data_file, encoding='utf-8') as f:
         for filename in f:
             idx = int(filename.split('/')[-1].split('_')[0])
             words = read_text(filename.strip())
@@ -31,7 +31,7 @@ def load_file(data_file, split_idx):
 
 def load_test_dataset(data_file):
     test = []
-    with open(data_file) as f:
+    with open(data_file, encoding='utf-8') as f:
         for filename in f:
             words = read_text(filename.strip())
             test.append(words)
@@ -44,7 +44,7 @@ def prepare_imdb():
     imdb_validation_neg_start_id = 10625
 
     def fwrite_data(filename, sentences):
-        with open(filename, 'w') as f:
+        with open(filename, 'w', encoding='utf-8') as f:
             for words in sentences:
                 # line = ' '.join(words)
                 line = words
